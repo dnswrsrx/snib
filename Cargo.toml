@@ -1,0 +1,28 @@
+[package]
+name = "snib"
+version = "0.3.0"
+edition = "2021"
+description = "Thumbnail window/display picker for Wayland screen sharing (xdg-desktop-portal-wlr)"
+license = "GPL-3.0-or-later"
+repository = "https://github.com/zelane/snib"
+readme = "README.md"
+keywords = ["wayland", "screencast", "layer-shell", "wlroots", "gtk4"]
+categories = ["command-line-utilities"]
+
+[dependencies]
+# relm4 re-exports gtk, gdk, glib and pango, so there's no separate gtk4 dep.
+# relm4 and gtk4-layer-shell must stay on the same gtk4-rs generation (both 0.10
+# here), otherwise two gtk4-sys versions fight over the `gtk-4` native lib and
+# cargo refuses to resolve. gtk4-layer-shell also needs its C library installed
+# (e.g. Arch: `pacman -S gtk4-layer-shell`).
+relm4 = "0.10"
+gtk4-layer-shell = "0.7"
+image = { version = "0.25", default-features = false, features = ["png"] }
+wayland-client = "0.31"
+wayland-protocols = { version = "0.32.13", features = ["client", "staging"] }
+rustix = { version = "1", features = ["fs", "mm"] }
+clap = { version = "4", features = ["derive", "env"] }
+strfmt = "0.2.5"
+
+[profile.release]
+opt-level = 2

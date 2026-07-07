@@ -1,0 +1,125 @@
+/* snib — Catppuccin Mocha
+ *
+ * This file is compiled into the binary as the default theme. To restyle,
+ * copy it to ~/.config/snib/style.css and edit — the user file is
+ * loaded at higher priority, so your rules win. This is also the matugen /
+ * pywal templating target: point a template at the @define-color block.
+ */
+
+/* ---- palette (Catppuccin Mocha) ---- */
+@define-color base      #1e1e2e;
+@define-color mantle    #181825;
+@define-color crust     #11111b;
+@define-color surface0  #313244;
+@define-color surface1  #45475a;
+@define-color surface2  #585b70;
+@define-color overlay0  #6c7086;
+@define-color text      #cdd6f4;
+@define-color subtext1  #bac2de;
+@define-color subtext0  #a6adc8;
+@define-color accent    #cba6f7;
+
+/* ---- window ---- */
+window.snib {
+    background: darker(@base);
+    color: @text;
+    padding: 1em 3em;
+}
+
+.snib .title {
+    color: @text;
+    font-weight: 600;
+    font-size: 0;
+}
+
+/* ---- thumbnail buttons ---- */
+.snib button.thumb {
+    border: none;
+    background: none;
+    background-color: transparent;
+    border-radius: 0;
+    padding: 0;
+    transition: border-color 120ms ease, background-color 120ms ease, transform 120ms ease;
+    margin: 1em 3em 3em 1em;
+}
+
+.snib button.thumb picture {
+    transition: box-shadow 240ms ease, opacity 240ms ease, filter 240ms ease;
+    filter: grayscale(1);
+    opacity: .3;
+}
+
+.snib picture.thumb-image {
+    border-radius: 0;
+    border: 2px solid alpha(@surface1, 1);
+}
+
+.snib label.caption {
+    color: @subtext1;
+    font-size: 18px;
+    margin-bottom: .5em;
+    border-bottom: 3px solid transparent;
+    background-color: darker(@base);
+}
+
+
+/* keyboard focus == selection; the accent ring is the selection indicator */
+.snib button.thumb:hover,
+.snib button.thumb:focus,
+.snib button.thumb:focus-visible {
+    border-color: @accent;
+    outline: none;
+    transform: scale(1.02);
+}
+
+.snib button.thumb:hover picture,
+.snib button.thumb:focus picture,
+.snib button.thumb:focus-visible picture {
+    box-shadow: 0 3px 10px alpha(black, 0.8);
+    opacity: 1;
+    filter: grayscale(0);
+}
+
+.snib button.thumb:hover label.caption,
+.snib button.thumb:focus label.caption,
+.snib button.thumb:focus-visible label.caption {
+    color: @accent;
+}
+
+/* ---- scrollbar ---- */
+.snib scrollbar {
+    background: transparent;
+    box-shadow: none;
+}
+
+.snib scrollbar slider {
+    min-height: 8px;
+    border-radius: 0;
+    background-color: transparent;
+    border: none;
+    outline: none;
+    box-shadow: none;
+}
+
+/* ---- empty state ---- */
+.snib label.empty {
+    color: @subtext0;
+    margin: 24px;
+}
+
+.search-field {
+    color: @text;
+    border: none;
+    background-color: transparent;
+    font-size: 24px;
+    outline: none;
+}
+.search-prompt {
+    color: @accent;
+    font-weight: bold;
+    margin-right: 2px;
+    font-size: 24px;
+}
+.search-field placeholder {
+    color: @overlay0;
+}
