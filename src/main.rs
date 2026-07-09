@@ -243,13 +243,13 @@ impl SimpleComponent for App {
                         sender.input(Msg::SetMode(Kind::Display));
                         glib::Propagation::Stop
                     }
-                    gdk::Key::l => {
+                    gdk::Key::l | gdk::Key::j => {
                         if let Some(w) = ctrl.widget() {
                             w.child_focus(gtk::DirectionType::TabForward);
                         }
                         glib::Propagation::Stop
                     }
-                    gdk::Key::h => {
+                    gdk::Key::h | gdk::Key::k => {
                         if let Some(w) = ctrl.widget() {
                             w.child_focus(gtk::DirectionType::TabBackward);
                         }
